@@ -17,8 +17,12 @@ const SignupForm = ({}) => {
   } = useForm();
 
   const { signIn } = useContext(UserContext);
+  
+  const [userType,setUserType] = useState("User");
 
   const submitUser = async (data) => {
+    console.log(data)
+    console.log(userType);
     try {
       const response = await axios.post(
         `${SIGNUP_API}`,
@@ -69,7 +73,9 @@ const SignupForm = ({}) => {
   const signupUser = async (data) => {
     submitUser(data);
   };
-
+function selectUserType(input){
+  setUserType(input.target.value)
+}
   return (
     <>
       <form
@@ -80,6 +86,17 @@ const SignupForm = ({}) => {
         }}
       >
         <h2 className={classes.title}>Sign up</h2>
+
+        <div>
+        <label className={classes.labels}> I am a </label>
+          <input type="radio" id="manager" name="userType" value="Manager"  {...register("type")} onChange={selectUserType} />
+          <label  className={classes.labels} htmlFor="manager" > Manager</label>
+          <input type="radio" id="user" name="userType" value="User" defaultChecked  {...register("type")} onChange={selectUserType}/>
+          <label  className={classes.labels} htmlFor="user"> User</label>
+          <br />
+        </div>
+
+
         <div className={classes.inputField}>
           <i className="fas fa-user" />
           <input
