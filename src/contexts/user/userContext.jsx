@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
-import { LOGIN_API } from "../../constants/apiUrls.js";
+import { GET_SIGNED_IN_USER } from "../../constants/apiUrls.js";
 
 export const UserContext = createContext({
 	loading: true,
@@ -14,11 +14,11 @@ const UserContextProvider = ({ children }) => {
 
 	const [loading, setLoading] = useState(true);
 	 
-	console.log(LOGIN_API);
+	console.log(GET_SIGNED_IN_USER);
 	const fetchCurrentUser = async () => {
 		try {
 			const userData = await axios.get(
-				`${LOGIN_API}`,
+				`${GET_SIGNED_IN_USER}`,
 				{
 					withCredentials: true,
 				}
