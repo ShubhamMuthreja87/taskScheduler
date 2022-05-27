@@ -33,17 +33,14 @@ const SignupForm = ({}) => {
     });
   }, []);
 
-  console.log(managerList);
 
   const submitUser = async (data) => {
-    console.log(data);
     let api = "";
     if (userType === "User") {
       api = SIGNUP_API_USER;
       try {
         const response = await axios.post(
           `${api}`,
-  
           {
             email: data.email,
             password: data.password,
@@ -67,16 +64,14 @@ const SignupForm = ({}) => {
               closeOnClick: true,
               progress: undefined,
               });
+
           } else {
             setError("unknown", {
               message: response.data.message,
             });
           }
           return;
-        } else {
-          console.log(response);
-          return;
-        }
+        } 
       } catch (err) {
         if (err.response?.data?.error?.body?.details) {
           err.response?.data?.error?.body?.details?.forEach((e) => {
@@ -127,9 +122,6 @@ const SignupForm = ({}) => {
             });
           }
           return;
-        } else {
-          console.log(response);
-          return;
         }
       } catch (err) {
         if (err.response?.data?.error?.body?.details) {
@@ -175,10 +167,7 @@ const SignupForm = ({}) => {
           });
         }
         return;
-      } else {
-        console.log(response);
-        return;
-      }
+      } 
     } catch (err) {
       if (err.response?.data?.error?.body?.details) {
         err.response?.data?.error?.body?.details?.forEach((e) => {
@@ -392,7 +381,7 @@ const SignupForm = ({}) => {
                 })}
               >
                 {managerList.map((manager, index) => {
-                  console.log(manager.name);
+                
                   return (
                     <option
                       className={classes.labels}

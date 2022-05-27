@@ -8,8 +8,9 @@ import { Spinner, Text } from "@theme-ui/components";
 import validator from "validator";
 import { LOGIN_API_USER, LOGIN_API_MANAGER } from "../../constants/apiUrls";
 import { toast } from 'react-toastify';
-
+import { useRouter } from "next/dist/client/router";
 const LoginForm = ({}) => {
+  const router = useRouter();
   const { signIn } = useContext(UserContext);
   const {
     handleSubmit,
@@ -49,14 +50,12 @@ const LoginForm = ({}) => {
 			closeOnClick: true,
 			progress: undefined,
 			});
+      router.replace("/dashboard");
 		} else {
 		  setError("unknown", {
 			message: response.data.message,
 		  });
 		}
-		return;
-	  } else {
-		console.log(response);
 		return;
 	  }
     } catch (err) {
@@ -165,6 +164,8 @@ const LoginForm = ({}) => {
             {errors.unknown.message}
           </Text>
         )}
+  {/* <Link href="/dashboard" path="/dashboard"> */}
+
 
         <button
           type="submit"
@@ -177,6 +178,7 @@ const LoginForm = ({}) => {
           {isSubmitting && <Spinner size={16} color={"white"} sx={{ mr: 1 }} />}
           <span>Login</span>
         </button>
+        {/* </Link> */}
       </form>
     </>
   );
