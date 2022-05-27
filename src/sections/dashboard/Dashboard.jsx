@@ -8,6 +8,7 @@ import TeamMembers from "./TeamMembers";
 import Tasks from "./Tasks";
 import Approve from "./Approve";
 import MyTaskList from "./MyTaskList";
+import CreateTask from "./CreateTask";
 
 const styles = {
     section: {
@@ -76,6 +77,7 @@ const Dashboard = () => {
               
                     {selectedTab === "Team Members" && <TeamMembers/>}
                     {selectedTab === "Tasks" && <Tasks/>}
+                    {selectedTab==="Add Task"&&<CreateTask/>}
                     {selectedTab === "Add to team" && <Approve/>}
                     {selectedTab === "My Tasks" && <MyTaskList/>}
                 </Box>

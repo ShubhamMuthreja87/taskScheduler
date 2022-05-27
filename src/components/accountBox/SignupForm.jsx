@@ -7,6 +7,7 @@ import classes from "./loginStyles.module.css";
 import validator from "validator";
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/dist/client/router";
 import {
   SIGNUP_API_USER,
   SIGNUP_API_MANAGER,
@@ -26,7 +27,7 @@ const SignupForm = ({}) => {
 
   const [userType, setUserType] = useState("User");
   const [managerList, setManagerList] = useState([]);
-
+  const router = useRouter();
   useEffect(() => {
     axios.get(GET_MANAGER_LIST).then((response) => {
       setManagerList([...response.data.managers]);
@@ -64,7 +65,7 @@ const SignupForm = ({}) => {
               closeOnClick: true,
               progress: undefined,
               });
-
+              router.replace("/dashboard");
           } else {
             setError("unknown", {
               message: response.data.message,
@@ -116,6 +117,7 @@ const SignupForm = ({}) => {
               closeOnClick: true,
               progress: undefined,
               });
+              router.replace("/dashboard");
           } else {
             setError("unknown", {
               message: response.data.message,
