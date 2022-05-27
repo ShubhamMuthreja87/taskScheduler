@@ -1,5 +1,5 @@
-import Dashboard from "../sections/dashboard/Dashboard.jsx"
-import DashboardLayout from "../sections/dashboard/DashboardLayout.jsx"
+import Dashboard from "../../sections/dashboard/Dashboard"
+import DashboardLayout from "../../sections/dashboard/DashboardLayout.jsx"
 
 const dashboard = () => {
     return (
